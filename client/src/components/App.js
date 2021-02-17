@@ -94,7 +94,12 @@ class App extends Component {
           </div>
           <div className="row">
             {this.state.user
-              .filter(user => user.Name.indexOf(this.state.Filter) > -1)
+              .filter(
+                user =>
+                  user.Name.toLowerCase().indexOf(
+                    this.state.Filter.toLowerCase()
+                  ) > -1
+              )
               .map((user, key) => (
                 <div className="col-4 mb-3" key={key}>
                   <Card
