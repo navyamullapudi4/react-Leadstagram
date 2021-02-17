@@ -3,6 +3,7 @@ import Header from "./Header";
 import user from "../constants/user";
 import Card from "./Card";
 import Icon from "./Icon";
+import Search from "./Search";
 
 class App extends Component {
   state = {
@@ -28,27 +29,11 @@ class App extends Component {
         </Header>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-12">
-              <Card className="mb-3" Header="Filter">
-                <form action="">
-                  <div className="form-group m-0">
-                    <label htmlFor="enterName" className="sr-only">
-                      Enter Name
-                    </label>
-                    <input
-                      type="text"
-                      name="enterName"
-                      id="enterName"
-                      className="form-control"
-                      palceholder="Enter Name"
-                      value={this.state.Filter}
-                      onChange={this.handleFilterChange}
-                    />
-                  </div>
-                </form>
-              </Card>
-              <form action=""></form>
-            </div>
+            <Search
+              Card={Card}
+              Filter={this.state.Filter}
+              handleFilterChange={this.handleFilterChange}
+            />
           </div>
           <div className="row">
             {user.length === 0 ? (
