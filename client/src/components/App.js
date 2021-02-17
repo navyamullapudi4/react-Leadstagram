@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from "./Header";
-import user from "./user";
+import user from "../constants/user";
 import Card from "./Card";
 
 class App extends Component {
@@ -44,6 +44,10 @@ class App extends Component {
       Website: {
         IconClass: "globe",
         UrlPrepend: ""
+      },
+      Phone: {
+        IconClass: "screen-smartphone",
+        UrlPrepend: "tel:"
       }
     };
     const Icon = ({ Network, Profile }) => (
@@ -52,6 +56,7 @@ class App extends Component {
         className="btn btn-outline-success mr-2 btn-sm"
       >
         <i className={"icon-" + SocialIcons[Network].IconClass}></i>
+        {Network === "Phone" ? " " + Profile : null}
       </a>
     );
     return (
@@ -68,6 +73,11 @@ class App extends Component {
                   ImgAlign
                   key={key}
                   Header={user.Name}
+                  Title={
+                    user.whatsApp ? (
+                      <Icon Network="Phone" Profile={user.whatsApp} />
+                    ) : null
+                  }
                 >
                   {user.Social.Facebook && (
                     <Icon Network="Facebook" Profile={user.Social.Facebook} />
