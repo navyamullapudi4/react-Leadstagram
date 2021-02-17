@@ -63,6 +63,10 @@ class App extends Component {
         {Network === "Phone" ? " " + Profile : null}
       </a>
     );
+    const user = this.state.user.filter(
+      user =>
+        user.Name.toLowerCase().indexOf(this.state.Filter.toLowerCase()) > -1
+    );
     return (
       <div className="App">
         <Header dark={true} className="Header">
@@ -93,14 +97,14 @@ class App extends Component {
             </div>
           </div>
           <div className="row">
-            {this.state.user
-              .filter(
-                user =>
-                  user.Name.toLowerCase().indexOf(
-                    this.state.Filter.toLowerCase()
-                  ) > -1
-              )
-              .map((user, key) => (
+            {user.length === 0 ? (
+              <div className="col-12">
+                <div className="alert alert-danger text-center">
+                  sorry no users found
+                </div>
+              </div>
+            ) : (
+              user.map((user, key) => (
                 <div className="col-4 mb-3" key={key}>
                   <Card
                     Image={"https://i.imgur.com/DKUR9Tkl.jpg"}
@@ -143,7 +147,8 @@ class App extends Component {
                     )}
                   </Card>
                 </div>
-              ))}
+              ))
+            )}
           </div>
         </div>
         <pre className="m-5 border radius bg-light">
