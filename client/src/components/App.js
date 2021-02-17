@@ -5,7 +5,8 @@ import Card from "./Card";
 
 class App extends Component {
   state = {
-    user: []
+    user: [],
+    Filter: "pradeep"
   };
   componentDidMount() {
     this.setState({ user });
@@ -78,6 +79,7 @@ class App extends Component {
                       id="enterName"
                       className="form-control"
                       palceholder="Enter Name"
+                      value={this.state.Filter}
                     />
                   </div>
                 </form>
