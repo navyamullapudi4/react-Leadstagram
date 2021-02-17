@@ -1,11 +1,111 @@
 import React, { Component } from "react";
 import Header from "./Header";
+import user from "./user";
+import Card from "./Card";
 
 class App extends Component {
+  state = {
+    user: []
+  };
+  componentDidMount() {
+    this.setState({ user });
+  }
+
   render() {
-    return <div className="App">
-      <Header dark={true} className="Header"> Leadstagram</Header>
-    </div>;
+    const SocialIcons = {
+      Facebook: {
+        IconClass: "social-facebook",
+        UrlPrepend: "https://www.facebook.com/"
+      },
+      Twitter: {
+        IconClass: "social-twitter",
+        UrlPrepend: "https://www.twitter.com/"
+      },
+      LinkedIn: {
+        IconClass: "social-linkedin",
+        UrlPrepend: "https://www.linkedin.com/"
+      },
+      Instagra: {
+        IconClass: "social-instagram",
+        UrlPrepend: "https://www.instagram.com/"
+      },
+      Quora: {
+        IconClass: "social-question",
+        UrlPrepend: "https://www.quora.com/"
+      },
+      Youtube: {
+        IconClass: "social-youtube",
+        UrlPrepend: "https://youtube.com/"
+      },
+      Reddit: {
+        IconClass: "social-reddit",
+        UrlPrepend: "https://reddit.com/"
+      },
+      Website: {
+        IconClass: "globe",
+        UrlPrepend: ""
+      }
+    };
+    const Icon = ({ Network, Profile }) => (
+      <a
+        href={SocialIcons[Network].UrlPrepend + Profile}
+        className="btn btn-outline-success mr-2 btn-sm"
+      >
+        <i className={"icon-" + SocialIcons[Network].IconClass}></i>
+      </a>
+    );
+    return (
+      <div className="App">
+        <Header dark={true} className="Header">
+          Leadstagram
+        </Header>
+        <div className="containing">
+          <div className="row">
+            {this.state.user.map((user, key) => (
+              <div className="col-4 mb-3">
+                <Card
+                  Image={"https://i.imgur.com/DKUR9Tkl.jpg"}
+                  ImgAlign
+                  key={key}
+                  Header={user.Name}
+                >
+                  {user.Social.Facebook && (
+                    <Icon Network="Facebook" Profile={user.Social.Facebook} />
+                  )}
+                  {user.Social.Twitter && (
+                    <Icon Network="Twitter" Profile={user.Social.Twitter} />
+                  )}
+                  {user.Social.LinkedIn && (
+                    <Icon Network="LinkedIn" Profile={user.Social.LinkedIn} />
+                  )}
+                  {user.Social.Instagram && (
+                    <Icon Network="Instagram" Profile={user.Social.Instagram} />
+                  )}
+
+                  {user.Social.Quora && (
+                    <Icon Network="Quora" Profile={user.Social.Quora} />
+                  )}
+
+                  {user.Social.Youtube && (
+                    <Icon Network="Youtube" Profile={user.Social.Youtube} />
+                  )}
+                  {user.Social.Reddit && (
+                    <Icon Network="Reddit" Profile={user.Social.Reddit} />
+                  )}
+                  {user.Social.Website && (
+                    <Icon Network="Website" Profile={user.Social.Website} />
+                  )}
+                </Card>
+              </div>
+            ))}
+          </div>
+        </div>
+        <pre className="m-5 border radius bg-light">
+          Total count: {this.state.user.length + "\n"}
+          {JSON.stringify(this.state, null, 2)}
+        </pre>
+      </div>
+    );
   }
 }
 
