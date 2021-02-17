@@ -93,47 +93,52 @@ class App extends Component {
             </div>
           </div>
           <div className="row">
-            {this.state.user.map((user, key) => (
-              <div className="col-4 mb-3" key={key}>
-                <Card
-                  Image={"https://i.imgur.com/DKUR9Tkl.jpg"}
-                  ImgAlign
-                  Header={user.Name}
-                  Title={
-                    user.whatsApp ? (
-                      <Icon Network="Phone" Profile={user.whatsApp} />
-                    ) : null
-                  }
-                >
-                  {user.Social.Facebook && (
-                    <Icon Network="Facebook" Profile={user.Social.Facebook} />
-                  )}
-                  {user.Social.Twitter && (
-                    <Icon Network="Twitter" Profile={user.Social.Twitter} />
-                  )}
-                  {user.Social.LinkedIn && (
-                    <Icon Network="LinkedIn" Profile={user.Social.LinkedIn} />
-                  )}
-                  {user.Social.Instagram && (
-                    <Icon Network="Instagram" Profile={user.Social.Instagram} />
-                  )}
+            {this.state.user
+              .filter(user => user.Name.indexOf(this.state.Filter) > -1)
+              .map((user, key) => (
+                <div className="col-4 mb-3" key={key}>
+                  <Card
+                    Image={"https://i.imgur.com/DKUR9Tkl.jpg"}
+                    ImgAlign
+                    Header={user.Name}
+                    Title={
+                      user.whatsApp ? (
+                        <Icon Network="Phone" Profile={user.whatsApp} />
+                      ) : null
+                    }
+                  >
+                    {user.Social.Facebook && (
+                      <Icon Network="Facebook" Profile={user.Social.Facebook} />
+                    )}
+                    {user.Social.Twitter && (
+                      <Icon Network="Twitter" Profile={user.Social.Twitter} />
+                    )}
+                    {user.Social.LinkedIn && (
+                      <Icon Network="LinkedIn" Profile={user.Social.LinkedIn} />
+                    )}
+                    {user.Social.Instagram && (
+                      <Icon
+                        Network="Instagram"
+                        Profile={user.Social.Instagram}
+                      />
+                    )}
 
-                  {user.Social.Quora && (
-                    <Icon Network="Quora" Profile={user.Social.Quora} />
-                  )}
+                    {user.Social.Quora && (
+                      <Icon Network="Quora" Profile={user.Social.Quora} />
+                    )}
 
-                  {user.Social.Youtube && (
-                    <Icon Network="Youtube" Profile={user.Social.Youtube} />
-                  )}
-                  {user.Social.Reddit && (
-                    <Icon Network="Reddit" Profile={user.Social.Reddit} />
-                  )}
-                  {user.Social.Website && (
-                    <Icon Network="Website" Profile={user.Social.Website} />
-                  )}
-                </Card>
-              </div>
-            ))}
+                    {user.Social.Youtube && (
+                      <Icon Network="Youtube" Profile={user.Social.Youtube} />
+                    )}
+                    {user.Social.Reddit && (
+                      <Icon Network="Reddit" Profile={user.Social.Reddit} />
+                    )}
+                    {user.Social.Website && (
+                      <Icon Network="Website" Profile={user.Social.Website} />
+                    )}
+                  </Card>
+                </div>
+              ))}
           </div>
         </div>
         <pre className="m-5 border radius bg-light">
