@@ -6,7 +6,11 @@ import Card from "./Card";
 class App extends Component {
   state = {
     user: [],
-    Filter: "pradeep"
+    Filter: ""
+  };
+  handleFilterChange = e => {
+    console.log(e.target.value);
+    console.log(e.target.name);
   };
   componentDidMount() {
     this.setState({ user });
@@ -76,10 +80,12 @@ class App extends Component {
                     </label>
                     <input
                       type="text"
+                      name="enterName"
                       id="enterName"
                       className="form-control"
                       palceholder="Enter Name"
                       value={this.state.Filter}
+                      onChange={this.handleFilterChange}
                     />
                   </div>
                 </form>
@@ -89,11 +95,10 @@ class App extends Component {
           </div>
           <div className="row">
             {this.state.user.map((user, key) => (
-              <div className="col-4 mb-3">
+              <div className="col-4 mb-3" key={key}>
                 <Card
                   Image={"https://i.imgur.com/DKUR9Tkl.jpg"}
                   ImgAlign
-                  key={key}
                   Header={user.Name}
                   Title={
                     user.whatsApp ? (
