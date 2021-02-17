@@ -64,7 +64,27 @@ class App extends Component {
         <Header dark={true} className="Header">
           Leadstagram
         </Header>
-        <div className="containing">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-12">
+              <Card className="mb-3" Header="Filter">
+                <form action="">
+                  <div className="form-group m-0">
+                    <label htmlFor="enterName" className="sr-only">
+                      Enter Name
+                    </label>
+                    <input
+                      type="text"
+                      id="enterName"
+                      className="form-control"
+                      palceholder="Enter Name"
+                    />
+                  </div>
+                </form>
+              </Card>
+              <form action=""></form>
+            </div>
+          </div>
           <div className="row">
             {this.state.user.map((user, key) => (
               <div className="col-4 mb-3">
