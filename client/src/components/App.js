@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "./Header";
 import user from "../constants/user";
 import Card from "./Card";
+import Icon from "./Icon";
 
 class App extends Component {
   state = {
@@ -16,53 +17,6 @@ class App extends Component {
   }
 
   render() {
-    const SocialIcons = {
-      Facebook: {
-        IconClass: "social-facebook",
-        UrlPrepend: "https://www.facebook.com/"
-      },
-      Twitter: {
-        IconClass: "social-twitter",
-        UrlPrepend: "https://www.twitter.com/"
-      },
-      LinkedIn: {
-        IconClass: "social-linkedin",
-        UrlPrepend: "https://www.linkedin.com/"
-      },
-      Instagra: {
-        IconClass: "social-instagram",
-        UrlPrepend: "https://www.instagram.com/"
-      },
-      Quora: {
-        IconClass: "social-question",
-        UrlPrepend: "https://www.quora.com/"
-      },
-      Youtube: {
-        IconClass: "social-youtube",
-        UrlPrepend: "https://youtube.com/"
-      },
-      Reddit: {
-        IconClass: "social-reddit",
-        UrlPrepend: "https://reddit.com/"
-      },
-      Website: {
-        IconClass: "globe",
-        UrlPrepend: ""
-      },
-      Phone: {
-        IconClass: "screen-smartphone",
-        UrlPrepend: "tel:"
-      }
-    };
-    const Icon = ({ Network, Profile }) => (
-      <a
-        href={SocialIcons[Network].UrlPrepend + Profile}
-        className="btn btn-outline-success mr-2 btn-sm"
-      >
-        <i className={"icon-" + SocialIcons[Network].IconClass}></i>
-        {Network === "Phone" ? " " + Profile : null}
-      </a>
-    );
     const user = this.state.user.filter(
       user =>
         user.Name.toLowerCase().indexOf(this.state.Filter.toLowerCase()) > -1
