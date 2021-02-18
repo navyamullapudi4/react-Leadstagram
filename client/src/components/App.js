@@ -17,7 +17,6 @@ class App extends Component {
   componentDidMount() {
     this.setState({ user });
   }
-
   render() {
     const user = this.state.user.filter(
       user =>
@@ -44,5 +43,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;

@@ -1,24 +1,18 @@
 const UserList = ({ Card, Icon, user }) => {
   return user.length === 0 ? (
     <div className="col-12">
-      <div className="alert alert-danger text-center">
-        Sorry, no users found.
-      </div>
+      <div className="alert alert-danger text-center">sorry no users found</div>
     </div>
   ) : (
     user.map((user, key) => (
-      <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-3" key={key}>
+      <div className="col-4 mb-3" key={key}>
         <Card
-          Image={
-            user.Imgur
-              ? "https://i.imgur.com/" + user.Imgur + "b.jpg"
-              : "https://i.imgur.com/DKUR9Tkb.jpg"
-          }
-          ImgAlign="top"
+          Image={"https://i.imgur.com/DKUR9Tkl.jpg"}
+          ImgAlign
           Header={user.Name}
           Title={
-            user.WhatsApp ? (
-              <Icon Network="Phone" Profile={user.WhatsApp} />
+            user.whatsApp ? (
+              <Icon Network="Phone" Profile={user.whatsApp} />
             ) : null
           }
         >

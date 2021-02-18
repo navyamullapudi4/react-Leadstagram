@@ -129,7 +129,7 @@ const user = [
   },
   {
     Name: " Lekha",
-    whatsApp: "06385963142",
+    whatsApp: "0638596314",
     Email: "laharimullapudi94@gmail.com",
     Imgur: null,
     Social: {
