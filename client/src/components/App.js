@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from "./Header";
-import user from "../constants/user";
+import Users from "../constants/Users";
 import Card from "./Card";
 import Icon from "./Icon";
 import Search from "./Search";
@@ -8,17 +8,17 @@ import UserList from "./UserList";
 
 class App extends Component {
   state = {
-    user: [],
+    Users: [],
     Filter: ""
   };
   handleFilterChange = e => {
     this.setState({ Filter: e.target.value });
   };
   componentDidMount() {
-    this.setState({ user });
+    this.setState({ Users });
   }
   render() {
-    const user = this.state.user.filter(
+    const users = this.state.Users.filter(
       user =>
         user.Name.toLowerCase().indexOf(this.state.Filter.toLowerCase()) > -1
     );
@@ -36,7 +36,7 @@ class App extends Component {
             />
           </div>
           <div className="row">
-            <UserList user={user} Card={Card} Icon={Icon} />
+            <UserList users={users} Card={Card} Icon={Icon} />
           </div>
         </div>
       </div>
