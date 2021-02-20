@@ -15,7 +15,9 @@ class App extends Component {
     this.setState({ Filter: e.target.value });
   };
   componentDidMount() {
-    this.setState({ Users });
+    fetch("api/users.json")
+      .then(res => res.json())
+      .then(Users => this.setState({ Users }));
   }
   render() {
     return (
