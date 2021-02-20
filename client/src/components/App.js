@@ -5,6 +5,7 @@ import Users from "../constants/Users";
 import Icon from "./Icon";
 import Search from "./Search";
 import UserList from "./UserList";
+import { GetUsers } from "../services/Users";
 
 class App extends Component {
   state = {
@@ -15,9 +16,7 @@ class App extends Component {
     this.setState({ Filter: e.target.value });
   };
   componentDidMount() {
-    fetch("api/users.json")
-      .then(res => res.json())
-      .then(Users => this.setState({ Users }));
+    GetUsers().then(Users => this.setState({ Users }));
   }
   render() {
     return (
