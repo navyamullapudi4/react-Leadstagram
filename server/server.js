@@ -19,6 +19,14 @@ app.get("/", (req, res) => {
   res.json("welcome to API server, mullapudi");
 });
 
+app.get("/:param", (req, res) => {
+  res.json({
+    Message: `welcome to API server, ${req.params.param}!`,
+    Q: req.query, //query string enabling
+    Action: `I will create an account for ${req.query.fullname} with the username ${req.query.username} and password ${req.query.password}`
+  });
+});
+
 // next is telling the app, listen to port and tell us wht is happening
 app.listen(port, () => {
   console.log(`server started in port ${port}.`);
