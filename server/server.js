@@ -14,6 +14,7 @@ import  com.me.Express;
 const port = 3100;
 
 app.use(morgan("dev"));
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.json("welcome to API server, mullapudi");
@@ -30,7 +31,7 @@ app.get("/", (req, res) => {
 //express.json is the request handler in the below line
 app.post(
   ["/", "/:param", "/:profile/:username"],
-  express.json(),
+
   (req, res) => {
     res.json({
       Message: "I am in the post",
