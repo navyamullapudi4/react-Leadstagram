@@ -48,4 +48,14 @@ app.put("/:id", (req, res) => {
   }
 });
 
+//Delete an item
+app.delete("/:id", (req, res) => {
+  if (todos[req.params.id]) {
+    todos[req.params.id] = null;
+    res.status(204).end();
+  } else {
+    res.status(404).json("Get lost!");
+  }
+});
+
 module.exports = app;
