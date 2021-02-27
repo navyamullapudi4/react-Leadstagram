@@ -30,4 +30,22 @@ app.post("/", (req, res) => {
   }
 });
 
+//updating a particular element
+app.put("/:id", (req, res) => {
+  if (todos[req.params.id]) {
+    if (typeof req.body.item !== "undefined") {
+      if (todos.includes(req.body.item)) {
+        res.status(409).json("How many times will you add?");
+      } else {
+        todos[req.params.id] = req.body.item;
+        res.status(201).json("Thanks for updating" + req.body.item);
+      }
+    } else {
+      res.status(406).json("Give me the item!");
+    }
+  } else {
+    res.status(404).json("Get lost!");
+  }
+});
+
 module.exports = app;
