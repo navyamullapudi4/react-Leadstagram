@@ -1,15 +1,19 @@
 const express = require("express");
 const app = express.Router();
 
-const todos = require("../../constants/todos.json");
+const todos = require("../../constants/todos.json").map((Name, ID) => ({
+  Name,
+  ID,
+  Active: true
+}));
 // get the  complete list
 app.get("/", (req, res) => {
-  res.json(todos);
+  res.json(todos.filter(t => t.Active).map(t => t.Name));
 });
 
 //get the individual item
 app.get("/:id", (req, res) => {
-  if (todos[req.params.id]) {
+  if (todos[req.params.id] && todos[req.params.id].Active) {
     res.json(todos[req.params.id]);
   } else {
     res.status(404).json("get lost!");
@@ -19,29 +23,29 @@ app.get("/:id", (req, res) => {
 //create the new item in the list
 app.post("/", (req, res) => {
   if (typeof req.body.item !== "undefined") {
-    if (todos.includes(req.body.item)) {
+    if (todos.map(t => t.Name).includes(req.body.item)) {
       res.status(409).json("How many times will you add?");
     } else {
-      todos.push(req.body.item);
-      res.json("Thanks for adding the item" + req.body.item);
+      todos.push({ Name: req.body.item, ID: todos.length, Active: true });
+      res.status(201).json("Thanks for adding " + req.body.item);
     }
   } else {
-    res.status(406).json("Give me the item!");
+    res.status(406).json("Give me item!");
   }
 });
 
 //updating a particular element
 app.put("/:id", (req, res) => {
-  if (todos[req.params.id]) {
+  if (todos[req.params.id] && todos[req.params.id].Active) {
     if (typeof req.body.item !== "undefined") {
-      if (todos.includes(req.body.item)) {
+      if (todos.map(t => t.Name).includes(req.body.item)) {
         res.status(409).json("How many times will you add?");
       } else {
-        todos[req.params.id] = req.body.item;
-        res.status(201).json("Thanks for updating" + req.body.item);
+        todos[req.params.id].Name = req.body.item;
+        res.status(202).json("Thanks for updating " + req.body.item);
       }
     } else {
-      res.status(406).json("Give me the item!");
+      res.status(406).json("Give me item!");
     }
   } else {
     res.status(404).json("Get lost!");
@@ -50,8 +54,8 @@ app.put("/:id", (req, res) => {
 
 //Delete an item
 app.delete("/:id", (req, res) => {
-  if (todos[req.params.id]) {
-    todos[req.params.id] = null;
+  if (todos[req.params.id] && todos[req.params.id].Active) {
+    todos[req.params.id].Active = false;
     res.status(204).end();
   } else {
     res.status(404).json("Get lost!");
