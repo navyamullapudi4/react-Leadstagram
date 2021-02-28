@@ -16,7 +16,9 @@ class App extends Component {
     this.setState({ Filter: e.target.value });
   };
   componentDidMount() {
-    GetUsers().then(res => this.setState({ Users: res.data }));
+    GetUsers().then(res =>
+      this.setState({ RawData: res.data, Users: Object.values(res.data) })
+    );
   }
   render() {
     return (
