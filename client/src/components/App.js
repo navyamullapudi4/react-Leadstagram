@@ -17,7 +17,10 @@ class App extends Component {
   };
   componentDidMount() {
     GetUsers().then(res =>
-      this.setState({ RawData: res.data, Users: Object.values(res.data) })
+      this.setState({
+        RawData: res.data,
+        Users: Object.keys(res.data).map(Slug => ({ ...res.data[Slug], Slug }))
+      })
     );
   }
   render() {
