@@ -1,5 +1,6 @@
 const express = require("express"); //express library is loaded to the page
 const morgan = require("morgan");
+const cors = require("cors");
 //create an instance of express library
 const app = express();
 /*the above line is  same as below code in java
@@ -17,7 +18,8 @@ const port = 3100;
 
 app.use(morgan("dev"));
 app.use(express.json());
-//below line belongs to root route
+app.use(cors());
+//below line belongs to root rout
 /*app.get("/", (req, res) => {
   res.json("welcome to API server!, mullapudi");
 });*/
