@@ -7,7 +7,11 @@ const users = [
     password: "navya@123",
     FullName: "Navya Mullapudi"
   },
-  { Username: "Keerthi", password: "Keerthi@123", FullName: "Keerthi sekhar" }
+  {
+    Username: "Keerthi",
+    password: "Keerthi@123",
+    FullName: "Keerthi sekhar"
+  }
 ];
 
 //create new user
@@ -28,4 +32,4 @@ app.post("/login", (req, res) => {
 //update existing user
 //delete existing user
 
-module.express = app;
+module.exports = app;

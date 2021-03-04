@@ -22,7 +22,7 @@ app.get("/:id", (req, res) => {
 //create the new item in the list
 app.post("/", (req, res) => {
   if (typeof req.body.Note !== "undefined") {
-    todos.push({ Note: req.body.Note, NoteID: notes.length, Active: true });
+    notes.push({ Note: req.body.Note, NoteID: notes.length, Active: true });
     res.status(201).json("Thanks for adding " + req.body.item);
   } else {
     res.status(406).json("Give me item!");
